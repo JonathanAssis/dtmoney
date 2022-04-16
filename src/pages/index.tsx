@@ -5,6 +5,7 @@ import { createServer, Model } from 'miragejs'
 import { Dashboard } from '../components/Dashboard'
 import { Header } from '../components/Header'
 import { NewTransactionModal } from '../components/NewTransactionModal'
+import { TransactionsProvider } from '../hooks/useTransactions'
 
 Modal.setAppElement('#__next');
 
@@ -54,7 +55,7 @@ const Home = () => {
     setIsNewTransactionModalOpen(false);
   }
   return (
-    <>
+    <TransactionsProvider>
       <Header onOpenNewTransactionModal={handleOpenNewTransactionModal} />
       <Dashboard />
       <NewTransactionModal 
@@ -62,7 +63,7 @@ const Home = () => {
       onRequestClose={handleCloseNewTransactionModal} 
       />     
       <GlobalStyled />
-    </>
+    </TransactionsProvider>
   )
 }
 
